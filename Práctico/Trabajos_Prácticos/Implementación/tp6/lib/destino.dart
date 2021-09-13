@@ -21,7 +21,7 @@ class Destino extends StatefulWidget {
 }
 
 class _DestinoState extends State<Destino> {
-  String dropdownValue = 'Córdoba';
+  String dropdownValue = globals.str_destino_ciudad;
 
   Shader linearGradient = LinearGradient(
     colors: <Color>[Color(0xffDA44bb), Color(0xff8921aa)],
@@ -41,19 +41,24 @@ class _DestinoState extends State<Destino> {
           backgroundColor: Colors.white,
           elevation: 5,
           automaticallyImplyLeading: true,
-          leading: ShaderMask(
-              blendMode: BlendMode.srcIn,
-              shaderCallback: (Rect bounds) {
-                return ui.Gradient.linear(
-                  Offset(4.0, 24.0),
-                  Offset(24.0, 4.0),
-                  [Color(0xffDA44bb), Color(0xff8921aa)],
-                );
-              },
-              child: Icon(
-                Icons.arrow_back_ios_new_rounded,
-                size: 36.0,
-              ))),
+          leading: TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: ShaderMask(
+                blendMode: BlendMode.srcIn,
+                shaderCallback: (Rect bounds) {
+                  return ui.Gradient.linear(
+                    Offset(4.0, 24.0),
+                    Offset(24.0, 4.0),
+                    [Color(0xffDA44bb), Color(0xff8921aa)],
+                  );
+                },
+                child: Icon(
+                  Icons.arrow_back_ios_new_rounded,
+                  size: 36.0,
+                )),
+          )),
       body: Center(
         child: Container(
           margin: const EdgeInsets.only(top: 10.0, left: 15, right: 30),
@@ -78,6 +83,7 @@ class _DestinoState extends State<Destino> {
                   Container(
                     width: 220,
                     child: TextField(
+                      controller: globals.controller_destino_direccion,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Dirección',
@@ -86,7 +92,6 @@ class _DestinoState extends State<Destino> {
                   ),
                   Container(
                       margin: const EdgeInsets.only(left: 15),
-
                       child: DropdownButton<String>(
                         value: dropdownValue,
                         iconSize: 24,
@@ -110,6 +115,7 @@ class _DestinoState extends State<Destino> {
                 height: 30,
               ),
               TextField(
+                controller: globals.controller_destino_referencias,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Referencias',
@@ -118,7 +124,6 @@ class _DestinoState extends State<Destino> {
               Container(
                 height: 30,
               ),
-
             ],
           ),
         ),
@@ -134,7 +139,28 @@ class _DestinoState extends State<Destino> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              if(globals.controller_destino_direccion.text == "")
+                {
+                  showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      title: const Text('Error'),
+                      content: Text("Debe completar la dirección"),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'Aceptar'),
+                          child: const Text('Aceptar'),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              else
+                {
+                  Navigator.pop(context, globals.controller_destino_direccion.text);
+                }
+            },
             child: const Text(
               'Continuar',
               style: TextStyle(color: Color(0xFF4ea8de)),

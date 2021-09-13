@@ -238,7 +238,7 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
                                   fontWeight: FontWeight.bold),
                             ),
                             new Text(
-                              'Sin seleccionar',
+                              str_destino.text,
                               style: new TextStyle(
                                   fontSize: 12.0, color: Colors.white70),
                             ),
@@ -254,9 +254,16 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 new TextButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
+                                  onPressed: () async {
+                                    final result = await Navigator.pushNamed(
                                         context, '/direcciones/destino');
+
+                                    if (result != null)
+                                      {
+                                        setState(() {
+                                          str_destino.text = result.toString();
+                                        });
+                                      }
                                   },
                                   child: Text("Seleccionar",
                                       style: new TextStyle(
@@ -312,7 +319,7 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
                                   fontWeight: FontWeight.bold),
                             ),
                             new Text(
-                              'Sin seleccionar',
+                              str_descripcion.text,
                               style: new TextStyle(
                                   fontSize: 12.0, color: Colors.white70),
                             ),
@@ -328,9 +335,15 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 new TextButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
+                                  onPressed: () async {
+                                    final result = await Navigator.pushNamed(
                                         context, '/descripcion');
+                                    if (result != null)
+                                      {
+                                        setState(() {
+                                          str_descripcion.text = result.toString();
+                                        });
+                                      }
                                   },
                                   child: Text("Seleccionar",
                                       style: new TextStyle(
