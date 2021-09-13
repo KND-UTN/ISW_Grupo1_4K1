@@ -4,6 +4,7 @@ import 'package:tp6/map_selector.dart';
 import 'package:tp6/payment_method.dart';
 import 'package:tp6/descripcion.dart';
 import 'package:tp6/horario.dart';
+import 'package:tp6/destino.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/menu': (context) => LoQueSeaMenu(),
         '/direcciones/origen': (context) => MapSelector(),
-        '/direcciones/destino': (context) => MapSelector(),
+        '/direcciones/destino': (context) => Destino(),
         '/forma_pago': (context) => PaymentMethods(),
         '/descripcion': (context) => Descripcion(),
         '/horario': (context) => Horario(),
