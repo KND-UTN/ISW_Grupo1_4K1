@@ -136,8 +136,12 @@ class PaymentMethods extends StatelessWidget {
                         height: 10.0,
                       ),
                       new RaisedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/forma_pago/tarjeta');
+                        onPressed: () async {
+                          final resultado = await Navigator.pushNamed(context, '/forma_pago/tarjeta');
+                          if (resultado != null)
+                            {
+                              Navigator.pop(context, resultado.toString());
+                            }
                         },
                         child: Text(
                           "Seleccionar",
@@ -263,7 +267,7 @@ class PaymentMethods extends StatelessWidget {
                                                         ],
                                                       ));
                                             } else {
-                                              Navigator.pop(context);
+                                              Navigator.pop(context, r"Efectivo: $" + cantidad.toString());
                                             }
                                           },
                                           child: Text(

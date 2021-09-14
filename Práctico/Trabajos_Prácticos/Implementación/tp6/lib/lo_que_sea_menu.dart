@@ -257,6 +257,7 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
 
                                     if (result != null) {
                                       setState(() {
+                                        globals.bool_destino = true;
                                         str_destino.text = result.toString();
                                       });
                                     }
@@ -395,7 +396,7 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
                                   fontWeight: FontWeight.bold),
                             ),
                             new Text(
-                              'Sin seleccionar',
+                              str_pago.text,
                               style: new TextStyle(
                                   fontSize: 12.0, color: Colors.white70),
                             ),
@@ -411,8 +412,16 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 new TextButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(context, '/forma_pago');
+                                  onPressed: () async {
+                                    final result = await Navigator.pushNamed(context, '/forma_pago');
+
+                                    if (result != null)
+                                      {
+                                        setState(() {
+                                          globals.bool_pago = true;
+                                          str_pago.text = result.toString();
+                                        });
+                                      }
                                   },
                                   child: Text("Seleccionar",
                                       style: new TextStyle(
@@ -528,12 +537,15 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
                   globals.bool_pago &&
                   globals.bool_horario) {
                 if (globals.str_origen_ciudad == globals.str_destino_ciudad) {
-                  Navigator.pushNamed(context, 'ok');
+                  Navigator.pushNamed(context, '/ok');
                 } else {
                   mostrarErrorDirecciones(context);
                 }
               }
-              mostrarErrorSelecciones(context);
+              else
+                {
+                  mostrarErrorSelecciones(context);
+                }
             },
             child: const Text(
               'Continuar',
@@ -566,7 +578,7 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
       context: context,
       builder: (BuildContext context) => AlertDialog(
         title: const Text('Error'),
-        content: const Text(
+        content: Text(
             'Debe completar todas las opciones para completar el pedido.'),
         actions: <Widget>[
           TextButton(

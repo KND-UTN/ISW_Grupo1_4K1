@@ -371,7 +371,7 @@ class _CreditCardState extends State<CreditCard> {
                 }
               }
               if (flag1 == false && flag2 == false && flag3 == false && flag4 == false) {
-                Navigator.pop(context, "");
+                Navigator.pop(context, "Tarjeta terminada en " + numeroTarjeta.substring(15, 19));
               }
             },
             child: const Text(

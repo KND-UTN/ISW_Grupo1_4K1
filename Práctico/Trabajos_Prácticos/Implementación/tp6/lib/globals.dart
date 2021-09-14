@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 bool bool_origen = false;
 bool bool_destino = false;
 bool bool_descripcion = false;
-bool bool_pago = true;
+bool bool_pago = false;
 bool bool_horario = false;
 
 TextEditingController controller_origen_direccion = TextEditingController();
