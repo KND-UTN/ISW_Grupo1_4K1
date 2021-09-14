@@ -1,38 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'DeliverEat',
-      home: PaymentMethods(),
-    );
-  }
-}
-
-class PaymentMethods extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      home: _PaymentMethods(),
-    );
-  }
-}
-
 const ktext = TextStyle(
   color: Colors.white,
   fontSize: 24,
   fontWeight: FontWeight.w900,
 );
 
-class _PaymentMethods extends StatelessWidget {
+class PaymentMethods extends StatelessWidget {
   String cantidad = "0";
   @override
   Widget build(BuildContext context) {
@@ -106,7 +81,8 @@ class _PaymentMethods extends StatelessWidget {
                       new Text('SOLO VISA', style: new TextStyle(fontSize: 12.0, color: Colors.white70),),
                       new SizedBox(height: 10.0,),
                       new RaisedButton( onPressed: (){
-                        //Ruta a la pantalla de la tarjeta
+                        Navigator.pushNamed(
+                            context, '/forma_pago/tarjeta');
                       },
                         child:
                         Text("Seleccionar", style: TextStyle(

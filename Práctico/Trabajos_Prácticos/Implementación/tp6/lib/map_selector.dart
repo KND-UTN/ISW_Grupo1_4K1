@@ -12,7 +12,6 @@ String area = "None";
 String political = "None";
 String anotherPolitical = "None";
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -56,42 +55,69 @@ class MapSelector extends StatelessWidget {
             onPressed: () async {
               if (globals.controller_origen_direccion.text == "") {
                 mostrarErrorDireccion(context);
-              }
-              else {
+              } else {
                 final queryParameters = {
                   'key': 'AIzaSyCUB5OtErzNYvJfNzBM7oAhgcwZf0kBkqc',
                   'address': globals.controller_origen_direccion.text,
                 };
 
-                final url = Uri.https(
-                    'maps.googleapis.com', '/maps/api/geocode/json',
-                    queryParameters);
+                final url = Uri.https('maps.googleapis.com',
+                    '/maps/api/geocode/json', queryParameters);
                 var response = await http.get(url);
                 var json_response = json.decode(response.body);
 
                 globals.controller_origen_direccion.text =
-                    json_response["results"][0]["formatted_address"]
-                        .toString();
+                    json_response["results"][0]["formatted_address"].toString();
 
                 estado_mapa.currentState!._addMarker(LatLng(
                     json_response["results"][0]["geometry"]["location"]["lat"],
-                    json_response["results"][0]["geometry"]["location"]["lng"]));
+                    json_response["results"][0]["geometry"]["location"]
+                        ["lng"]));
 
-                locality = json_response["results"][0]["address_components"][2]["short_name"].toString();
-                area = json_response["results"][0]["address_components"][3]["short_name"].toString();
-                political = json_response["results"][0]["address_components"][4]["short_name"].toString();
-                anotherPolitical = json_response["results"][0]["address_components"][5]["short_name"].toString();
+                locality = json_response["results"][0]["address_components"][2]
+                        ["short_name"]
+                    .toString();
+                area = json_response["results"][0]["address_components"][3]
+                        ["short_name"]
+                    .toString();
+                political = json_response["results"][0]["address_components"][4]
+                        ["short_name"]
+                    .toString();
+                anotherPolitical = json_response["results"][0]
+                        ["address_components"][5]["short_name"]
+                    .toString();
 
-
-                if( ! (locality == "Villa Carlos Paz" ||  area == "Capital" || political == "Capital" ||  area == "Río Primero" || locality == "Córdoba" || anotherPolitical == "Capital"))
-                  {
-                    mostrarErrorUbicacion(context);
+                if (!(locality == "Villa Carlos Paz" ||
+                    area == "Capital" ||
+                    political == "Capital" ||
+                    area == "Río Primero" ||
+                    locality == "Córdoba" ||
+                    anotherPolitical == "Capital")) {
+                  mostrarErrorUbicacion(context);
+                } else {
+                  if (locality == "Villa Carlos Paz") {
+                    globals.str_origen_ciudad = 'Carlos Paz';
                   }
-                else
-                  {
-                    globals.bool_origen = true;
-                    Navigator.pop(context, json_response["results"][0]["address_components"][1]["short_name"].toString() + " " + json_response["results"][0]["address_components"][0]["short_name"].toString());
+                  if (area == "Capital" ||
+                      political == "Capital" ||
+                      locality == "Córdoba" ||
+                      anotherPolitical == "Capital") {
+                    globals.str_origen_ciudad = 'Córdoba';
                   }
+                  if (area == "Río Primero") {
+                    globals.str_origen_ciudad = 'Río Primero';
+                  }
+                  globals.bool_origen = true;
+                  Navigator.pop(
+                      context,
+                      json_response["results"][0]["address_components"][1]
+                                  ["short_name"]
+                              .toString() +
+                          " " +
+                          json_response["results"][0]["address_components"][0]
+                                  ["short_name"]
+                              .toString());
+                }
               }
             },
             child: const Text(
@@ -107,34 +133,36 @@ class MapSelector extends StatelessWidget {
   void mostrarErrorUbicacion(context) {
     showDialog<String>(
       context: context,
-      builder: (BuildContext context) =>
-          AlertDialog(
-            title: const Text('Error de ubicación'),
-            content: Text("Recuerde que las localidades permitidas son Córdoba, Río Primero y Carlos Paz.\nUsted ha seleccionado: " + locality + ", " + area),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'Aceptar'),
-                child: const Text('Aceptar'),
-              ),
-            ],
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Error de ubicación'),
+        content: Text(
+            "Recuerde que las localidades permitidas son Córdoba, Río Primero y Carlos Paz.\nUsted ha seleccionado: " +
+                locality +
+                ", " +
+                area),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Aceptar'),
+            child: const Text('Aceptar'),
           ),
+        ],
+      ),
     );
   }
 
   void mostrarErrorDireccion(context) {
     showDialog<String>(
       context: context,
-      builder: (BuildContext context) =>
-          AlertDialog(
-            title: const Text('Dirección sin completar'),
-            content: const Text('Debe colocar una dirección para continuar'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'Aceptar'),
-                child: const Text('Aceptar'),
-              ),
-            ],
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Dirección sin completar'),
+        content: const Text('Debe colocar una dirección para continuar'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Aceptar'),
+            child: const Text('Aceptar'),
           ),
+        ],
+      ),
     );
   }
 }

@@ -21,7 +21,7 @@ class Destino extends StatefulWidget {
 }
 
 class _DestinoState extends State<Destino> {
-  String dropdownValue = globals.str_destino_ciudad;
+
 
   Shader linearGradient = LinearGradient(
     colors: <Color>[Color(0xffDA44bb), Color(0xff8921aa)],
@@ -93,12 +93,12 @@ class _DestinoState extends State<Destino> {
                   Container(
                       margin: const EdgeInsets.only(left: 15),
                       child: DropdownButton<String>(
-                        value: dropdownValue,
+                        value: globals.str_destino_ciudad,
                         iconSize: 24,
                         elevation: 16,
                         onChanged: (String? newValue) {
                           setState(() {
-                            dropdownValue = newValue!;
+                            globals.str_destino_ciudad = newValue!;
                           });
                         },
                         items: <String>['Córdoba', 'Río Primero', 'Carlos Paz']

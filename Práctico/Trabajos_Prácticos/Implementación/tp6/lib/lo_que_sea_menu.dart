@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class LoQueSeaMenu extends StatefulWidget {
   @override
   _LoQueSeaMenuState createState() => _LoQueSeaMenuState();
@@ -89,9 +88,8 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
                                 foreground: Paint()..shader = linearGradient))),
                   )),
               Container(
-                height: 5,
+                  height: 5,
                   width: 300,
-
                   decoration: new BoxDecoration(
                       boxShadow: [
                         BoxShadow(
@@ -102,13 +100,12 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
                         ),
                       ],
                       borderRadius:
-                      new BorderRadius.all(new Radius.circular(10.0)),
+                          new BorderRadius.all(new Radius.circular(10.0)),
                       gradient: new LinearGradient(
                           colors: [Color(0xffDA44bb), Color(0xff8921aa)],
                           begin: Alignment.centerLeft,
                           end: Alignment.centerRight,
-                          tileMode: TileMode.clamp))
-              ),
+                          tileMode: TileMode.clamp))),
               Expanded(
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -178,10 +175,10 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
                                     final respuesta = await Navigator.pushNamed(
                                         context, '/direcciones/origen');
                                     setState(() {
-                                      if (respuesta != null)
-                                        {
-                                          str_origen.text = respuesta.toString();
-                                        };
+                                      if (respuesta != null) {
+                                        str_origen.text = respuesta.toString();
+                                      }
+                                      ;
                                     });
                                   },
                                   child: Text("Seleccionar",
@@ -258,12 +255,11 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
                                     final result = await Navigator.pushNamed(
                                         context, '/direcciones/destino');
 
-                                    if (result != null)
-                                      {
-                                        setState(() {
-                                          str_destino.text = result.toString();
-                                        });
-                                      }
+                                    if (result != null) {
+                                      setState(() {
+                                        str_destino.text = result.toString();
+                                      });
+                                    }
                                   },
                                   child: Text("Seleccionar",
                                       style: new TextStyle(
@@ -338,12 +334,12 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
                                   onPressed: () async {
                                     final result = await Navigator.pushNamed(
                                         context, '/descripcion');
-                                    if (result != null)
-                                      {
-                                        setState(() {
-                                          str_descripcion.text = result.toString();
-                                        });
-                                      }
+                                    if (result != null) {
+                                      setState(() {
+                                        str_descripcion.text =
+                                            result.toString();
+                                      });
+                                    }
                                   },
                                   child: Text("Seleccionar",
                                       style: new TextStyle(
@@ -368,7 +364,7 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
                           ),
                         ],
                         borderRadius:
-                        new BorderRadius.all(new Radius.circular(10.0)),
+                            new BorderRadius.all(new Radius.circular(10.0)),
                         gradient: new LinearGradient(
                             colors: [Color(0xff4EA8DE), Color(0xff56CFE1)],
                             begin: Alignment.centerLeft,
@@ -379,38 +375,38 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
                       children: <Widget>[
                         new Padding(
                             padding:
-                            new EdgeInsets.only(left: 10.0, right: 10.0),
+                                new EdgeInsets.only(left: 10.0, right: 10.0),
                             child: new CircleAvatar(
                               radius: 35.0,
                               backgroundColor: Colors.white,
                               backgroundImage:
-                              AssetImage("assets/images/cash-payment.png"),
+                                  AssetImage("assets/images/cash-payment.png"),
                             )),
                         new Expanded(
                             child: new Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                new Text(
-                                  'Forma de Pago',
-                                  style: new TextStyle(
-                                      fontSize: 20.0,
-                                      color: Colors.white70,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                new Text(
-                                  'Sin seleccionar',
-                                  style: new TextStyle(
-                                      fontSize: 12.0, color: Colors.white70),
-                                ),
-                                new SizedBox(
-                                  height: 10.0,
-                                ),
-                              ],
-                            )),
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            new Text(
+                              'Forma de Pago',
+                              style: new TextStyle(
+                                  fontSize: 20.0,
+                                  color: Colors.white70,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            new Text(
+                              'Sin seleccionar',
+                              style: new TextStyle(
+                                  fontSize: 12.0, color: Colors.white70),
+                            ),
+                            new SizedBox(
+                              height: 10.0,
+                            ),
+                          ],
+                        )),
                         new Padding(
                             padding:
-                            new EdgeInsets.only(left: 10.0, right: 10.0),
+                                new EdgeInsets.only(left: 10.0, right: 10.0),
                             child: new Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
@@ -489,14 +485,14 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
                               children: <Widget>[
                                 new TextButton(
                                   onPressed: () async {
-                                    final result = await Navigator.pushNamed(context, '/horario');
+                                    final result = await Navigator.pushNamed(
+                                        context, '/horario');
 
-                                    if (result != null)
-                                      {
-                                        setState(() {
-                                          str_horario.text = result.toString();
-                                        });
-                                      }
+                                    if (result != null) {
+                                      setState(() {
+                                        str_horario.text = result.toString();
+                                      });
+                                    }
                                   },
                                   child: Text("Seleccionar",
                                       style: new TextStyle(
@@ -526,6 +522,18 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
               ),
             ),
             onPressed: () {
+              if (globals.bool_origen &&
+                  globals.bool_destino &&
+                  globals.bool_descripcion &&
+                  globals.bool_pago &&
+                  globals.bool_horario) {
+                if (globals.str_origen_ciudad == globals.str_destino_ciudad) {
+                  Navigator.pushNamed(context, 'ok');
+                } else {
+                  mostrarErrorDirecciones(context);
+                }
+              }
+              mostrarErrorSelecciones(context);
             },
             child: const Text(
               'Continuar',
@@ -533,6 +541,39 @@ class _LoQueSeaMenuState extends State<LoQueSeaMenu> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void mostrarErrorDirecciones(context) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Error'),
+        content: const Text('Las ciudades no concuerdan.'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Aceptar'),
+            child: const Text('Aceptar'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void mostrarErrorSelecciones(context) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Error'),
+        content: const Text(
+            'Debe completar todas las opciones para completar el pedido.'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Aceptar'),
+            child: const Text('Aceptar'),
+          ),
+        ],
       ),
     );
   }

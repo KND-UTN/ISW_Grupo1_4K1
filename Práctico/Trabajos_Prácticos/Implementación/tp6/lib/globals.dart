@@ -11,6 +11,7 @@ bool bool_horario = false;
 
 TextEditingController controller_origen_direccion = TextEditingController();
 TextEditingController controller_origen_referencias = TextEditingController();
+String str_origen_ciudad = "Córdoba";
 
 TextEditingController controller_destino_direccion = TextEditingController();
 TextEditingController controller_destino_referencias = TextEditingController();
