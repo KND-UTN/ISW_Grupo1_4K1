@@ -294,7 +294,7 @@ class _CreditCardState extends State<CreditCard> {
                 showDialog(
                     context: context,
                     builder: (BuildContext context) => AlertDialog(
-                      title: Text("No puede dejar campos vacios o incompletos!",),
+                      title: Text("No puede dejar campos vacíos o incompletos!",),
                       content: Text("Vuelva a intentar.",),
                       actions: <Widget>[
                         FlatButton(
@@ -312,7 +312,7 @@ class _CreditCardState extends State<CreditCard> {
                 showDialog(
                     context: context,
                     builder: (BuildContext context) => AlertDialog(
-                      title: Text("La tarjeta que usted ingreso no es VISA!",),
+                      title: Text("La tarjeta que usted ingresó no es VISA!",),
                       content: Text("Vuelva a intentar.",),
                       actions: <Widget>[
                         FlatButton(
@@ -330,7 +330,7 @@ class _CreditCardState extends State<CreditCard> {
                 showDialog(
                     context: context,
                     builder: (BuildContext context) => AlertDialog(
-                      title: Text("El número de tu tarjeta de crédito no es válido.",),
+                      title: Text("El número de tu tarjeta de crédito no es válido",),
                       content: Text("Vuelva a intentar.",),
                       actions: <Widget>[
                         FlatButton(

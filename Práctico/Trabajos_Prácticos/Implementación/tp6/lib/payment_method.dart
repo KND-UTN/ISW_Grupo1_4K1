@@ -118,7 +118,7 @@ class PaymentMethods extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       new Text(
-                        'Tarjeta de Credito',
+                        'Tarjeta de Crédito',
                         style: new TextStyle(
                             fontSize: 20.0,
                             color: Colors.white70,
@@ -267,7 +267,14 @@ class PaymentMethods extends StatelessWidget {
                                                         ],
                                                       ));
                                             } else {
-                                              Navigator.pop(context, r"Efectivo: $" + cantidad.toString());
+                                              if (cantidad.toString() == "0" || cantidad.toString() == "")
+                                                {
+                                                  errorMonto(context);
+                                                }
+                                              else
+                                                {
+                                                  Navigator.pop(context, r"Efectivo: $" + cantidad.toString());
+                                                }
                                             }
                                           },
                                           child: Text(
@@ -297,6 +304,23 @@ class PaymentMethods extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+
+  void errorMonto(context) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Error'),
+        content: const Text(
+            'Debe ingresar un monto'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Aceptar'),
+            child: const Text('Aceptar'),
+          ),
+        ],
       ),
     );
   }
