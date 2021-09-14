@@ -77,8 +77,9 @@ class _CreditCardState extends State<CreditCard> {
                 Stack(
                   children:[
                     Positioned(
+                      bottom: 75,
+                      left: 10,
                       child: Container(
-                        alignment: Alignment.center,
                         child: new Row(
                           children: [
                             Text(numeroTarjeta, style: new TextStyle(fontSize: 20.0, color: Colors.white70, fontWeight: FontWeight.bold),),
@@ -86,8 +87,8 @@ class _CreditCardState extends State<CreditCard> {
                         ),
                       ),),
                     Positioned(
-                      bottom: 60,
-                      right: 80,
+                      bottom: 50,
+                      left: 10,
                       child: Container(
                         child: new Row(
                           children: [
